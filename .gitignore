@@ -1,0 +1,8 @@
+# Local Terraform directories
+.terraform/
+*.tfstate
+*.tfstate.backup
+*.tfplan
+
+# Ignore private keys if they accidentally generate locally during dev work
+*.pem
