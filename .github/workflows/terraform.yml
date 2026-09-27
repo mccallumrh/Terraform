@@ -7,8 +7,8 @@ on:
     branches: [ "main" ]
 
 permissions:
-  id-token:-write # Required for AWS OIDC authentication (if configured)
-  contents:-read
+  id-token: write # Required for AWS OIDC authentication (if configured)
+  contents: read
 
 jobs:
   terraform:
