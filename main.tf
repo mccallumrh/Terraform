@@ -152,7 +152,8 @@ resource "aws_key_pair" "generated_key" {
 
 resource "local_file" "private_key" {
   content         = tls_private_key.ssh_key.private_key_pem
-  filename        = "/Users/raymccallum/Downloads/github-actions-ec2-key.pem"
+  # UPDATED: Writes to the runner workspace so GitHub Actions can find it
+  filename        = "${path.module}/github-actions-ec2-key.pem"
   file_permission = "0400"
 }
 
@@ -174,7 +175,6 @@ resource "aws_instance" "web" {
   vpc_security_group_ids = [aws_security_group.instance_sg.id]
   key_name               = aws_key_pair.generated_key.key_name
 
-  # Quick user data script to start a simple web server so the ALB target group stays healthy
   user_data = <<-EOF
               #!/bin/bash
               dnf update -y
